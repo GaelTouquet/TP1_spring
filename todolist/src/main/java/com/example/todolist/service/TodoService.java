@@ -64,7 +64,7 @@ public class TodoService implements IDAO<Todo> {
     }
     
     public List<Todo> findNotDone() {
-        Query<Todo> todoQuery = session.createQuery("from Todo t where !t.isDone", Todo.class);
+        Query<Todo> todoQuery = session.createQuery("from Todo t where not t.isDone", Todo.class);
         return todoQuery.list();
     }
 }
