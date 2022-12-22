@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Service;
 
 import com.example.todolist.entity.Todo;
 import com.example.todolist.interfaces.IDAO;
 import com.example.todolist.tools.ServiceHibernate;
 
-
+@Service
 public class TodoService implements IDAO<Todo> {
 
     private ServiceHibernate serviceHibernate;
@@ -56,5 +57,14 @@ public class TodoService implements IDAO<Todo> {
         Query<Todo> todoQuery = session.createQuery("from Todo", Todo.class);
         return todoQuery.list();
     }
+
+    public List<Todo> findDone() {
+        Query<Todo> todoQuery = session.createQuery("from Todo t where t.isDone", Todo.class);
+        return todoQuery.list();
+    }
     
+    public List<Todo> findNotDone() {
+        Query<Todo> todoQuery = session.createQuery("from Todo t where !t.isDone", Todo.class);
+        return todoQuery.list();
+    }
 }

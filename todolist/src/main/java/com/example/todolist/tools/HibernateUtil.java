@@ -9,8 +9,10 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
+            System.out.println("here");
             return new Configuration().configure("static/hibernate.cfg.xml").buildSessionFactory();
         } catch (Exception e) {
+            System.out.println("there");
             throw e;
         }
     }

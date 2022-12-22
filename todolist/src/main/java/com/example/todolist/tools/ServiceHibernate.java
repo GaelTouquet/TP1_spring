@@ -13,6 +13,7 @@ public class ServiceHibernate {
         try {
             _session = HibernateUtil.getSessionFactory().openSession();
         } catch (HibernateException e) {
+            System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
     }
